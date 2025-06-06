@@ -83,28 +83,5 @@ add_executable(cub3D
         lib/jal/src/string/strjoin_free.c
         lib/jal/src/string/strndup.c
         lib/jal/Makefile
-        include/fabio.h
-        src/check.c
-        src/check_2.c
-        src/cleanup_game.c
-        src/init_game.c
-        src/keyhook.c
-        src/parse_map.c
-        include/mapdata.h
-        include/error.h
-        src/mapdata/mapdata.c
-        lib/jal/src/string/isempty.c
-        include/cube3d.h
-        lib/jal/src/gnl/gnl_free_buffer.c
-        src/test/test_mapdata.c
-        include/test.h
-        src/mapdata/util.c
-        src/mapdata/mapdata_int.h
-        src/mapdata/read/read.c
-        src/mapdata/read/get_map.c
-        src/mapdata/read/read_int.h
-        src/mapdata/read/get_info.c
-        src/mapdata/check_map.c
-        src/mapdata/flood_fill.c
 )
 

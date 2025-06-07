@@ -10,19 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mapdata.h"
+#include "cube3d.h"
+#include "input.h"
 #include "error.h"
 #include "test.h"
+#include "graphic.h"
 
 int	main(int argc, char **argv)
 {
-	t_mapdata	mapdata;
+	t_input	input;
+	t_game	game;
 
 	if (argc != 2)
 		return (ft_error("Usage: ./cub3D <map_path>", E_ARGS));
-	if (ft_mapdata(argv[1], &mapdata) != 0)
+
+	if (ft_input(argv[1], &input) != 0)
 		return (*ft_exit_code());
-	test_print_map_data(&mapdata);
-	ft_free_mapdata(&mapdata);
+	//test_print_input(&input);
+
+	ft_init_game(&game, &input);
+	ft_free_input(&input);
+	test_print_game(&game);
+
+	ft_graphic(&game);
+
+	ft_free_game(&game);
+
 	return (0);
 }

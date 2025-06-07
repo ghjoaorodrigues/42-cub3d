@@ -14,7 +14,7 @@
 #include "jal_error.h"
 #include "jal_memory.h"
 #include "jal_string.h"
-#include "mapdata_int.h"
+#include "input_int.h"
 
 static int is_valid_map_char(char c)
 {

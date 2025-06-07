@@ -60,7 +60,7 @@ int	ft_count_map_lines(const char *path, int read_count) {
 	return (count);
 }
 
-int	ft_get_map(const char *path, int read_count, char ***map) {
+int	ft_map(const char *path, int read_count, char ***map) {
 	int		fd;
 	char	*line;
 	int		i;

@@ -83,5 +83,25 @@ add_executable(cub3D
         lib/jal/src/string/strjoin_free.c
         lib/jal/src/string/strndup.c
         lib/jal/Makefile
+        src/input/filename.c
+        src/input/format_map.c
+        src/input/read/map.c
+        src/input/read/read.c
+        src/input/read/read_int.h
+        src/input/read/texture.c
+        src/input/check_map.c
+        src/input/flood_fill.c
+        src/input/input.c
+        src/input/util.c
+        src/main/main.c
+        include/cube3d.h
+        include/test.h
+        include/error.h
+        include/input.h
+        Makefile
+        src/main/util.c
+        src/test/test_game.c
+        include/graphic.h
+        src/main/graphic/graphic.c
 )
 

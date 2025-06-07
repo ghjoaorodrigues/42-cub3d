@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "error.h"
-#include "mapdata_int.h"
+#include "input_int.h"
 
 int	ft_valid_char(char c) {
 	return (c == ' ' || c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');

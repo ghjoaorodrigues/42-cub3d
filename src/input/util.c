@@ -11,35 +11,28 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "input_int.h"
 
-#include "jal_memory.h"
-#include "mapdata_int.h"
-
-void	ft_init_mapdata(t_mapdata *mapdata) {
-	mapdata->data.NO = NULL;
-	mapdata->data.SO = NULL;
-	mapdata->data.EA = NULL;
-	mapdata->data.WE = NULL;
-	mapdata->data.F = -1;
-	mapdata->data.C = -1;
-	mapdata->map = NULL;
-	mapdata->player.x = -1;
-	mapdata->player.y = -1;
-	mapdata->player.direction = -1;
+void	ft_init_input(t_input *input) {
+	input->texture.NO = NULL;
+	input->texture.SO = NULL;
+	input->texture.EA = NULL;
+	input->texture.WE = NULL;
+	input->texture.F = -1;
+	input->texture.C = -1;
+	input->map.matrix = NULL;
+	input->player.x = -1;
+	input->player.y = -1;
+	input->player.direction = -1;
 }
 
-void	ft_free_data(t_data *data) {
-	if (data->NO)
-		free(data->NO);
-	if (data->SO)
-		free(data->SO);
-	if (data->EA)
-		free(data->EA);
-	if (data->WE)
-		free(data->WE);
-}
-
-void	ft_free_mapdata(t_mapdata *mapdata) {
-	ft_free_data(&mapdata->data);
-	ft_free_matrix((void **)mapdata->map);
+void	ft_free_texture(const t_texture *texture) {
+	if (texture->NO)
+		free(texture->NO);
+	if (texture->SO)
+		free(texture->SO);
+	if (texture->EA)
+		free(texture->EA);
+	if (texture->WE)
+		free(texture->WE);
 }

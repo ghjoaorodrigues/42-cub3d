@@ -13,9 +13,9 @@
 #ifndef READ_INT_H
 #define READ_INT_H
 
-#include "../mapdata_int.h"
+#include "../input_int.h"
 
-int	ft_get_info(char **line, int *read_count, int fd, t_data *data);
-int	ft_get_map(const char *path, int read_count, char ***map);
+int	ft_texture(char **line, int *read_count, int fd, t_texture *texture);
+int	ft_map(const char *path, int read_count, char ***map);
 
 #endif //READ_INT_H

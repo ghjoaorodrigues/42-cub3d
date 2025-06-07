@@ -11,20 +11,20 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
-
 #include "test.h"
 
-void	test_print_map_data(t_mapdata *mapdata) {
-	printf("NO: %s\n", mapdata->data.NO);
-	printf("SO: %s\n", mapdata->data.SO);
-	printf("EA: %s\n", mapdata->data.EA);
-	printf("WE: %s\n", mapdata->data.WE);
-	printf("F: %d\n", mapdata->data.F);
-	printf("C: %d\n", mapdata->data.C);
+void	test_print_input(const t_input *input) {
+	printf("TEST INPUT\n");
+	printf("NO: %s\n", input->texture.NO);
+	printf("SO: %s\n", input->texture.SO);
+	printf("EA: %s\n", input->texture.EA);
+	printf("WE: %s\n", input->texture.WE);
+	printf("F: %d\n", input->texture.F);
+	printf("C: %d\n", input->texture.C);
 	printf("\n");
 	printf("map:\n");
-	for (int i = 0; mapdata->map[i]; i++)
-		printf("%s\n", mapdata->map[i]);
-	printf("player pos: y:%d, x:%d\n", mapdata->player.y, mapdata->player.x);
-	printf("player direction: %d\n", mapdata->player.direction);
+	for (int i = 0; input->map.matrix[i]; i++)
+		printf("|%s|\n", input->map.matrix[i]);
+	printf("player pos: y:%d, x:%d\n", input->player.y, input->player.x);
+	printf("player direction: %d\n", input->player.direction);
 }

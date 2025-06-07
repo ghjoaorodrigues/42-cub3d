@@ -27,7 +27,7 @@ static void	ft_skip_empty_lines(char **line, int *read_count, const int fd) {
 	}
 }
 
-int	ft_read(const char *path, t_mapdata *mapdata) {
+int	ft_read(const char *path, t_input *input) {
 	char	*line;
 	int		read_count;
 	int		fd;
@@ -38,12 +38,12 @@ int	ft_read(const char *path, t_mapdata *mapdata) {
 	read_count = 0;
 	line = get_next_line(fd);
 	read_count++;
-	if (ft_get_info(&line, &read_count, fd, &mapdata->data) != 0)
+	if (ft_texture(&line, &read_count, fd, &input->texture) != 0)
 		return (ft_gnl_free_buffer(line, fd), close(fd), 1);
 	ft_skip_empty_lines(&line, &read_count, fd);
 	ft_gnl_free_buffer(line, fd);
 	close(fd);
-	if (ft_get_map(path, read_count, &mapdata->map) != 0)
-		return (ft_free_data(&mapdata->data), 1);
+	if (ft_map(path, read_count, &input->map.matrix) != 0)
+		return (ft_free_texture(&input->texture), 1);
 	return (0);
 }

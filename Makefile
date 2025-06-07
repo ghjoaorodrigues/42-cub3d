@@ -14,20 +14,25 @@ O_DIR			= obj
 # Print Settings
 header			= obj/header
 col1pad			= 12
-col2pad			= 12
+col2pad			= 27
 
 # Mandatory Files
 INC				= -I include
-SRC_MAIN		= src/main/main.c
-SRC_MAPDATA		= src/mapdata/mapdata.c \
-				  src/mapdata/util.c \
-				  src/mapdata/read/read.c \
-				  src/mapdata/read/get_info.c \
-				  src/mapdata/read/get_map.c \
-				  src/mapdata/check_map.c \
-				  src/mapdata/flood_fill.c
-SRC_TEST		= src/test/test_mapdata.c
-SRC				= $(SRC_MAIN) $(SRC_MAPDATA) $(SRC_TEST)
+SRC_MAIN		= src/main/main.c \
+				  src/main/util.c
+SRC_INPUT		= src/input/input.c \
+				  src/input/util.c \
+				  src/input/filename.c \
+				  src/input/read/read.c \
+				  src/input/read/texture.c \
+				  src/input/read/map.c \
+				  src/input/check_map.c \
+				  src/input/format_map.c \
+				  src/input/flood_fill.c
+SRC_GRAPHIC		= src/graphic/graphic.c
+SRC_TEST		= src/test/test_input.c \
+				  src/test/test_game.c
+SRC				= $(SRC_MAIN) $(SRC_INPUT) $(SRC_GRAPHIC) $(SRC_TEST)
 OBJ				= $(SRC:src/%.c=$(O_DIR)/$(notdir %.o))
 
 # JAL Settings
@@ -41,11 +46,11 @@ JAL_ADD			= -L $(JAL_DIR) -l jal
 MLX_DIR			= lib/mlx
 MLX				= $(MLX_DIR)/libmlx.a
 MLX_INC			= -I $(MLX_DIR)
-MLX_ADD			= -L $(MLX_DIR) -l mlx
+MLX_ADD			= -L $(MLX_DIR) -l mlx -L/usr/lib -lXext -lX11
 
 # Lib Settings
 LIB_INC		= $(JAL_INC) $(MLX_INC)
-LIB_ADD		= $(JAL_ADD) $(MLX_INC)
+LIB_ADD		= $(JAL_ADD) $(MLX_ADD)
 
 # Mandatory Rules
 all: $(header) $(JAL) $(MLX) $(NAME)

@@ -74,37 +74,37 @@ int	ft_get_colour(char *line, char *txt_name, int *colour)
 	return (0);
 }
 
-int	ft_info_full(const t_data *info)
+int	ft_info_full(const t_texture *info)
 {
 	return (info->NO && info->SO && info->EA && info->WE && info->F != -1
 		&& info->C != -1);
 }
 
-int	ft_process_info(char *line, t_data *data) {
+int	ft_process_info(char *line, t_texture *texture) {
 	if (!ft_strncmp(line, "NO ", 3))
-		return (ft_get_texture(line, "NO ", &data->NO));
+		return (ft_get_texture(line, "NO ", &texture->NO));
 	if (!ft_strncmp(line, "SO ", 3))
-		return (ft_get_texture(line, "SO ", &data->SO));
+		return (ft_get_texture(line, "SO ", &texture->SO));
 	if (!ft_strncmp(line, "EA ", 3))
-		return (ft_get_texture(line, "EA ", &data->EA));
+		return (ft_get_texture(line, "EA ", &texture->EA));
 	if (!ft_strncmp(line, "WE ", 3))
-		return (ft_get_texture(line, "WE ", &data->WE));
+		return (ft_get_texture(line, "WE ", &texture->WE));
 	if (!ft_strncmp(line, "F ", 2))
-		return (ft_get_colour(line, "F ", &data->F));
+		return (ft_get_colour(line, "F ", &texture->F));
 	if (!ft_strncmp(line, "C ", 2))
-		return (ft_get_colour(line, "C ", &data->C));
+		return (ft_get_colour(line, "C ", &texture->C));
 	if (!ft_isempty(line))
 		return (ft_error("Invalid line on map file",
 				E_INVALID_LINE));
 	return (0);
 }
 
-int	ft_get_info(char **line, int *read_count, const int fd, t_data *data)
+int	ft_texture(char **line, int *read_count, int fd, t_texture *texture)
 {
-	while (*line && !ft_info_full(data))
+	while (*line && !ft_info_full(texture))
 	{
-		if (ft_process_info(*line, data) != 0)
-			return (ft_free_data(data), 1);
+		if (ft_process_info(*line, texture) != 0)
+			return (ft_free_texture(texture), 1);
 		free(*line);
 		*line = get_next_line(fd);
 		*read_count += 1;

@@ -69,10 +69,10 @@ void	draw_walls(t_game *g, int x)
 void	calc_perpdist(t_game *game)
 {
 	if (game->horizontalside == 0)
-		game->perpwalldist = (game->mapx - game->pos_x + (1 - game->stepx) / 2)
+		game->perpwalldist = (game->map.matrixx - game->pos_x + (1 - game->stepx) / 2)
 			/ game->ray_dirx;
 	else
-		game->perpwalldist = (game->mapy - game->pos_y + (1 - game->stepy) / 2)
+		game->perpwalldist = (game->map.matrixy - game->pos_y + (1 - game->stepy) / 2)
 			/ game->ray_diry;
 }
 void	calc_distance(t_game *game)
@@ -80,13 +80,13 @@ void	calc_distance(t_game *game)
 	if (game->sidedistx < game->sidedisty)
 	{
 		game->sidedistx += game->deltax;
-		game->mapx += game->stepx;
+		game->map.matrixx += game->stepx;
 		game->horizontalside = 0;
 	}
 	else
 	{
 		game->sidedisty += game->deltay;
-		game->mapy += game->stepy;
+		game->map.matrixy += game->stepy;
 		game->horizontalside = 1;
 	}
 }
@@ -95,31 +95,31 @@ void	calc_raydir(t_game *game)
 	if (game->ray_dirx < 0)
 	{
 		game->stepx = -1;
-		game->sidedistx = (game->pos_x - game->mapx) * game->deltax;
+		game->sidedistx = (game->pos_x - game->map.matrixx) * game->deltax;
 	}
 	else
 	{
 		game->stepx = 1;
-		game->sidedistx = (game->mapx + 1.0 - game->pos_x) * game->deltax;
+		game->sidedistx = (game->map.matrixx + 1.0 - game->pos_x) * game->deltax;
 	}
 	if (game->ray_diry < 0)
 	{
 		game->stepy = -1;
-		game->sidedisty = (game->pos_y - game->mapy) * game->deltay;
+		game->sidedisty = (game->pos_y - game->map.matrixy) * game->deltay;
 	}
 	else
 	{
 		game->stepy = 1;
-		game->sidedisty = (game->mapy + 1.0 - game->pos_y) * game->deltay;
+		game->sidedisty = (game->map.matrixy + 1.0 - game->pos_y) * game->deltay;
 	}
 }
 void	init_ray(t_game *game, int x)
 {
 	game->camerax = 2 * x / (double)WIDTH - 1;
-	game->ray_dirx = game->dir_x + game->plane_x * game->camerax;
-	game->ray_diry = game->dir_y + game->plane_y * game->camerax;
-	game->mapx = (int)game->pos_x;
-	game->mapy = (int)game->pos_y;
+	game->ray_dirx = game->dir.x + game->plane_x * game->camerax;
+	game->ray_diry = game->dir.y + game->plane_y * game->camerax;
+	game->map.matrixx = (int)game->pos_x;
+	game->map.matrixy = (int)game->pos_y;
 	if (game->ray_dirx == 0)
 		game->deltax = 1e30;
 	else
@@ -134,7 +134,7 @@ void	alloc_map(t_game *game)
 	static char	*map_data[] = {"1111111111", "1000000001", "1000000001",
 			"1000000001", "1000000001", "1111111111"};
 
-	game->map = map_data;
+	game->map.matrix = map_data;
 }
 void	raycasting(t_game *game)
 {
@@ -150,7 +150,7 @@ void	raycasting(t_game *game)
 		while (game->hit == 0)
 		{
 			calc_distance(game);
-			if (game->map[game->mapy][game->mapx] == '1')
+			if (game->map.matrix[game->map.matrixy][game->map.matrixx] == '1')
 				game->hit = 1;
 		}
 		if (game->hit == 1)
@@ -197,8 +197,8 @@ void	initi(t_game *game)
 {
 	game->pos_x = 5.0;
 	game->pos_y = 3.0;
-	game->dir_x = -1;
-	game->dir_y = 0;
+	game->dir.x = -1;
+	game->dir.y = 0;
 	game->time = 0;
 	game->old_time = 0;
 	game->plane_x = 0;

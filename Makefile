@@ -31,7 +31,10 @@ SRC_INPUT		= src/input/input.c \
 				  src/input/flood_fill.c
 SRC_GRAPHIC		= src/graphic/graphic.c
 SRC_TEST		= src/test/test_input.c \
-				  src/test/test_game.c
+				  src/test/test_game.c \
+				  src/raycast/raycast.c \
+				  src/raycast/keyhook.c\
+				  src/raycast/textures.c
 SRC				= $(SRC_MAIN) $(SRC_INPUT) $(SRC_GRAPHIC) $(SRC_TEST)
 OBJ				= $(SRC:src/%.c=$(O_DIR)/$(notdir %.o))
 
@@ -46,7 +49,7 @@ JAL_ADD			= -L $(JAL_DIR) -l jal
 MLX_DIR			= lib/mlx
 MLX				= $(MLX_DIR)/libmlx.a
 MLX_INC			= -I $(MLX_DIR)
-MLX_ADD			= -L $(MLX_DIR) -l mlx -L/usr/lib -lXext -lX11
+MLX_ADD			= -L $(MLX_DIR) -l mlx -L/usr/lib -lXext -lX11 -lm 
 
 # Lib Settings
 LIB_INC		= $(JAL_INC) $(MLX_INC)

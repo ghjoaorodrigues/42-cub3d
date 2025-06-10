@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joao-alm <joao-alm@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 20:03:23 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/06/07 20:03:23 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/06/10 10:44:38 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,4 @@ void	ft_init_mlx(t_mlx *mlx) {
 void	ft_graphic(t_game *game) {
 	ft_init_mlx(&game->mlx);
 	ft_draw_map(&game->mlx, &game->map);
-	mlx_loop(game->mlx.mlx);
 }

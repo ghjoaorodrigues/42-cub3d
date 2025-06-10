@@ -6,7 +6,7 @@
 /*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 18:47:07 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/06/10 12:17:43 by fsilva-p         ###   ########.fr       */
+/*   Updated: 2025/06/10 17:22:13 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,9 @@ typedef struct s_game
 	void		*ray_win;
 	void		*ray_img;
 	char		*ray_addr;
+	double		wall_x;
+	int			tex_y;
+	int			tex_x;
 
 }				t_game;
 
@@ -122,5 +125,7 @@ void			calc_distance(t_game *game);
 void			calc_perpdist(t_game *game);
 void			draw_walls(t_game *game, int x);
 void			ft_raycastmain(t_game *game);
+void	draw_utils(t_game *game);
+char	*get_texture_addr(t_game *game);
 
 #endif // CUBE3D_H

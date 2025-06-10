@@ -34,7 +34,9 @@ SRC_TEST		= src/test/test_input.c \
 				  src/test/test_game.c \
 				  src/raycast/raycast.c \
 				  src/raycast/keyhook.c\
-				  src/raycast/textures.c
+				  src/raycast/textures.c\
+				  src/raycast/raycast_utils.c\
+				  src/raycast/init_ray.c
 SRC				= $(SRC_MAIN) $(SRC_INPUT) $(SRC_GRAPHIC) $(SRC_TEST)
 OBJ				= $(SRC:src/%.c=$(O_DIR)/$(notdir %.o))
 

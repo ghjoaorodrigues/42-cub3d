@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycast.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/11 20:08:28 by fsilva-p          #+#    #+#             */
+/*   Updated: 2025/06/11 20:16:33 by fsilva-p         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cube3d.h"
 #include <stdio.h>
 
@@ -24,6 +36,7 @@ void	calc_raydir(t_game *game)
 		game->sidedisty = (game->mapy + 1.0 - game->pos_y) * game->deltay;
 	}
 }
+
 void	init_ray(t_game *game, int x)
 {
 	game->camerax = 2 * x / (double)WIDTH - 1;
@@ -71,7 +84,9 @@ void	draw_clf(t_game *game)
 {
 	char	*adress;
 
-	int x, y;
+	int x;
+	int y;
+	
 	y = 0;
 	while (y < HEIGHT / 2)
 	{
@@ -98,4 +113,3 @@ void	draw_clf(t_game *game)
 		y++;
 	}
 }
-

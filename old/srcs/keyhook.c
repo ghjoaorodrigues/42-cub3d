@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyhook.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsilva-p <fsilva-p@student.42luxembourg.>  +#+  +:+       +#+        */
+/*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 15:50:38 by fsilva-p          #+#    #+#             */
-/*   Updated: 2025/05/28 17:55:28 by fsilva-p         ###   ########.fr       */
+/*   Updated: 2025/06/10 23:13:20 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,23 @@ int exit_game(t_game *game)
     return (0);
 }
 
-int keyhook(int keycode, t_game *game)
+int keyhook(int game->keycode, t_game *game)
 {
     double new_x = game->pos_x;
     double new_y = game->pos_y;
     
-    if (keycode == KEY_ESC)
+    if (game->keycode == KEY_ESC)
     {
         mlx_loop_end(game->mlx_ptr);
         return (1);
     }
-    if (keycode == KEY_W)
+    if (game->keycode == KEY_W)
         new_y -= MOVE_SPEED;
-    if (keycode == KEY_S)
+    if (game->keycode == KEY_S)
         new_y += MOVE_SPEED;
-    if (keycode == KEY_A)
+    if (game->keycode == KEY_A)
         new_x -= MOVE_SPEED;
-    if (keycode == KEY_D)
+    if (game->keycode == KEY_D)
         new_x += MOVE_SPEED;
     if ((int)new_y >= 0 && (int)new_y < game->map_height &&
         (int)new_x >= 0 && game->map_copy_valid[(int)new_y] &&

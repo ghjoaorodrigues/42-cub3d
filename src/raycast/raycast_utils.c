@@ -6,7 +6,7 @@
 /*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:21:17 by fsilva-p          #+#    #+#             */
-/*   Updated: 2025/06/10 17:25:09 by fsilva-p         ###   ########.fr       */
+/*   Updated: 2025/06/11 20:08:01 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ void	draw_utils(t_game *game)
 }
 void	draw_walls(t_game *game, int x)
 {
-	int y;
-	char *tex_addr;
-	unsigned int color;
-	int d;
-	char *tex_pixel;
-	char *dst;
+	int				y;
+	char			*tex_addr;
+	unsigned int	color;
+	int				d;
+	char			*tex_pixel;
+	char			*dst;
 
 	draw_utils(game);
 	tex_addr = get_texture_addr(game);
@@ -89,7 +89,6 @@ void	draw_walls(t_game *game, int x)
 	while (y < game->draw_end)
 	{
 		d = y * 256 - HEIGHT * 128 + game->line_height * 128;
-        
 		game->tex_y = (d * game->tex_height) / game->line_height / 256;
 		tex_pixel = tex_addr + (game->tex_y * game->tex_line_len + game->tex_x
 				* (game->tex_bpp / 8));

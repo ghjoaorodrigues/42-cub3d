@@ -6,22 +6,24 @@
 /*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 20:03:23 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/06/10 10:44:38 by fsilva-p         ###   ########.fr       */
+/*   Updated: 2025/06/11 20:12:02 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphic.h"
 #include "mlx.h"
 
-typedef struct s_img {
+typedef struct s_img
+{
 	void	*img;
 	char	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
-}	t_img;
+}			t_img;
 
-t_img	ft_square(const t_mlx *mlx, int size, int border_colour, int fill_colour)
+t_img	ft_square(const t_mlx *mlx, int size, int border_colour,
+		int fill_colour)
 {
 	t_img	image;
 	int		y;
@@ -29,7 +31,8 @@ t_img	ft_square(const t_mlx *mlx, int size, int border_colour, int fill_colour)
 	int		colour;
 
 	image.img = mlx_new_image(mlx->mlx, size, size);
-	image.addr = mlx_get_data_addr(image.img, &image.bpp, &image.line_len, &image.endian);
+	image.addr = mlx_get_data_addr(image.img, &image.bpp, &image.line_len,
+			&image.endian);
 	y = 0;
 	while (y < size)
 	{
@@ -47,7 +50,8 @@ t_img	ft_square(const t_mlx *mlx, int size, int border_colour, int fill_colour)
 	return (image);
 }
 
-void	ft_draw_map(const t_mlx *mlx, const t_map *map) {
+void	ft_draw_map(const t_mlx *mlx, const t_map *map)
+{
 	int		square_size;
 	t_img	floor;
 	t_img	wall;
@@ -67,20 +71,24 @@ void	ft_draw_map(const t_mlx *mlx, const t_map *map) {
 		while (++x < map->width)
 		{
 			if (map->matrix[y][x] != '1' && map->matrix[y][x] != ' ')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, floor.img, x * square_size, y * square_size);
+				mlx_put_image_to_window(mlx->mlx, mlx->win, floor.img, x
+					* square_size, y * square_size);
 			if (map->matrix[y][x] == '1')
-				mlx_put_image_to_window(mlx->mlx, mlx->win, wall.img, x * square_size, y * square_size);
+				mlx_put_image_to_window(mlx->mlx, mlx->win, wall.img, x
+					* square_size, y * square_size);
 		}
 	}
 }
 
-void	ft_init_mlx(t_mlx *mlx) {
+void	ft_init_mlx(t_mlx *mlx)
+{
 	int	height;
 	int	width;
 
 	height = WIN_HEIGHT;
 	width = WIN_WIDTH;
-	if (DEBUG) {
+	if (DEBUG)
+	{
 		height += DEBUG_WIN_HEIGHT;
 		width += DEBUG_WIN_WIDTH;
 	}
@@ -88,7 +96,8 @@ void	ft_init_mlx(t_mlx *mlx) {
 	mlx->win = mlx_new_window(mlx->mlx, width, height, "cub3D");
 }
 
-void	ft_graphic(t_game *game) {
+void	ft_graphic(t_game *game)
+{
 	ft_init_mlx(&game->mlx);
 	ft_draw_map(&game->mlx, &game->map);
 }

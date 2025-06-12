@@ -6,7 +6,7 @@
 /*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 15:50:38 by fsilva-p          #+#    #+#             */
-/*   Updated: 2025/06/10 11:58:12 by fsilva-p         ###   ########.fr       */
+/*   Updated: 2025/06/11 20:13:59 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char **argv)
 {
 	t_input	input;
 	t_game	game;
+	
 	if (argc != 2)
 		return (ft_error("Usage: ./cub3D <map_path>", E_ARGS));
 

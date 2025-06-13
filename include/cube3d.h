@@ -6,7 +6,7 @@
 /*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 18:47:07 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/06/11 20:05:52 by fsilva-p         ###   ########.fr       */
+/*   Updated: 2025/06/13 16:32:09 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ typedef struct s_game
 	double		pos_x;
 	double		pos_y;
 	char		*img_addr;
-	double		dir_x;
-	double		dir_y;
 	double		plane_x;
 	double		plane_y;
 	double		time;
@@ -107,8 +105,9 @@ typedef struct s_game
 	double		old_dir_x;
 	double		old_plane_x;
 	double		rot_speed;
-	double		new_x;
-	double		new_y;
+	int			new_x;
+	int			new_y;
+
 }				t_game;
 
 // Init
@@ -134,5 +133,8 @@ char			*get_texture_addr(t_game *game);
 void			right(int keycode, t_game *game);
 void			left(int keycode, t_game *game);
 void			strafe(int keycode, t_game *game);
-void            front_back(int keycode, t_game *game);
+void			front_back(int keycode, t_game *game);
+void			walk_w(int keycode, t_game *game);
+void			walk_s(int keycode, t_game *game);
+void	walk_a(int keycode, t_game *game);
 #endif // CUBE3D_H

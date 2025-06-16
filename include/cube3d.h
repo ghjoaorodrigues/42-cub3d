@@ -6,7 +6,7 @@
 /*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/04 18:47:07 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/06/13 16:32:09 by fsilva-p         ###   ########.fr       */
+/*   Updated: 2025/06/15 18:34:46 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../lib/mlx/mlx.h"
 # include <math.h>
 # include <stdio.h>
+# include <stdlib.h>
 
 # define DEBUG 1
 # define KEY_W 119
@@ -137,4 +138,7 @@ void			front_back(int keycode, t_game *game);
 void			walk_w(int keycode, t_game *game);
 void			walk_s(int keycode, t_game *game);
 void	walk_a(int keycode, t_game *game);
+void	key_d(int keycode, t_game *game);
+void	key_rotate_right(int keycode, t_game *game);
+void	key_rotate_left(int keycode, t_game *game);
 #endif // CUBE3D_H

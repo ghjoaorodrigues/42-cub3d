@@ -6,7 +6,7 @@
 /*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 20:08:28 by fsilva-p          #+#    #+#             */
-/*   Updated: 2025/06/12 14:28:09 by fsilva-p         ###   ########.fr       */
+/*   Updated: 2025/06/16 16:36:09 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,9 @@ void	raycasting(t_game *game)
 void	draw_clf(t_game *game)
 {
 	char	*adress;
+	int		x;
+	int		y;
 
-	int x;
-	int y;
-	
 	y = 0;
 	while (y < HEIGHT / 2)
 	{

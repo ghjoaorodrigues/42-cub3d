@@ -6,7 +6,7 @@
 /*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:28:48 by fsilva-p          #+#    #+#             */
-/*   Updated: 2025/06/12 14:26:10 by fsilva-p         ###   ########.fr       */
+/*   Updated: 2025/06/16 16:35:32 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	initi(t_game *game)
 }
 void	ft_raycastmain(t_game *game)
 {
-	int	endian;
+	int endian;
 
 	game->ray_win = mlx_new_window(game->mlx.mlx, WIDTH, HEIGHT,
 			"Hello world!");

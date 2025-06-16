@@ -6,7 +6,7 @@
 /*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 15:50:38 by fsilva-p          #+#    #+#             */
-/*   Updated: 2025/06/13 16:43:19 by fsilva-p         ###   ########.fr       */
+/*   Updated: 2025/06/15 18:35:21 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 int	exit_game(t_game *game)
 {
-	mlx_loop_end(game->mlx.mlx);
-	return (0);
+	if (game->ray_img)
+		mlx_destroy_image(game->mlx.mlx, game->ray_img);
+	if (game->mlx.win)
+		mlx_destroy_window(game->mlx.mlx, game->mlx.win);
+	mlx_destroy_display(game->mlx.mlx);
+	free(game->mlx.mlx);
+	exit(0);
 }
 
 int	keyhook(int keycode, t_game *game)
@@ -29,9 +34,12 @@ int	keyhook(int keycode, t_game *game)
 	game->rot_speed = 0.05;
 	if (keycode == KEY_ESC)
 		exit_game(game);
-	walk_a(keycode,game);
+	walk_a(keycode, game);
 	walk_s(keycode, game);
-	walk_w(keycode,game);
+	walk_w(keycode, game);
+	key_d(keycode, game);
+	key_rotate_right(keycode, game);
+	key_rotate_left(keycode, game);
 	draw_clf(game);
 	raycasting(game);
 	mlx_put_image_to_window(game->mlx.mlx, game->ray_win, game->ray_img, 0, 0);

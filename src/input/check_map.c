@@ -10,49 +10,64 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <sys/cdefs.h>
+
 #include "error.h"
 #include "input_int.h"
 
-int	ft_valid_char(char c) {
+int	ft_valid_char(const char c) {
 	return (c == ' ' || c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-int	ft_player_pos(char c, int y, int x, t_player *player) {
-	if (c == 'N' || c == 'S' || c == 'E' || c == 'W') {
-		if (player->direction != -1)
+int	ft_player_pos(char *c, const int y, const int x, t_player *player) {
+	if (*c == 'N' || *c == 'S' || *c == 'E' || *c == 'W') {
+		if (player->pos.y != -1)
 			return (1);
-		player->x = x;
-		player->y = y;
-		if (c == 'N')
-			player->direction = 0;
-		else if (c == 'E')
-			player->direction = 1;
-		else if (c == 'S')
-			player->direction = 2;
-		else if (c == 'W')
-			player->direction = 3;
+		player->pos.y = y + 0.5;
+		player->pos.x = x + 0.5;
+		player->dir.y = 0;
+		player->dir.x = 0;
+		player->plane.y = 0;
+		player->plane.x = 0;
+		if (*c == 'N') {
+			player->dir.y = -1;
+			player->plane.x = -FOV;
+		}
+		else if (*c == 'E') {
+			player->dir.x = 1;
+			player->plane.y = -FOV;
+		}
+		else if (*c == 'S') {
+			player->dir.y = 1;
+			player->plane.x = FOV;
+		}
+		else if (*c == 'W') {
+			player->dir.x = -1;
+			player->plane.y = FOV;
+		}
+		*c = '0';
 	}
 	return (0);
 }
 
-int	ft_check_map(char **map, t_player *player)
+int	ft_check_map(t_game *game)
 {
 	int	y;
 	int	x;
 
 	y = -1;
-	while (map[++y])
+	while (game->map.matrix[++y])
 	{
 		x = -1;
-		while (map[y][++x])
+		while (game->map.matrix[y][++x])
 		{
-			if (!ft_valid_char(map[y][x]))
+			if (!ft_valid_char(game->map.matrix[y][x]))
 				return (ft_error("Invalid char in map", E_INVALID_CHAR));
-			if (ft_player_pos(map[y][x], y, x, player) != 0)
+			if (ft_player_pos(&game->map.matrix[y][x], y, x, &game->player) != 0)
 				return (ft_error("More than one player pos", E_PLAYER_DUP));
 		}
 	}
-	if (player->direction == -1)
+	if (game->player.pos.y == -1)
 		return (ft_error("No player position given", E_NO_PLAYER));
 	return (0);
 }

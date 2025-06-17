@@ -6,21 +6,43 @@
 /*   By: joao-alm <joao-alm@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 20:02:29 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/06/07 20:02:29 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/06/16 20:23:49 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHIC_H
 #define GRAPHIC_H
 
-#include "cube3d.h"
+#include "game.h"
 
-#define	DEBUG_WIN_HEIGHT 500
-#define	DEBUG_WIN_WIDTH 500
+typedef struct	s_ray {
+	int			horizontal_side;
+	int			hit;
+	double		camera_x;
+	t_vector	ray_dir;
+	t_vector	player;
+	t_point		map;
+	t_vector	side_dist;
+	t_vector	delta;
+	t_point		step;
+	double		perp_wall_dist;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	double		wall_x;
+	t_point		tex;
+}				t_ray;
 
-#define	WIN_HEIGHT 0
-#define	WIN_WIDTH 0
+// Draw
+void			ft_draw(t_game *game);
 
-void	ft_graphic(t_game *game);
+// Raycast
+void			draw_clf(t_game *game);
+void			raycasting(t_game *game);
+
+// Utils
+void			calc_perp_dist(t_ray *ray);
+void			calc_distance(t_ray *ray);
+void			draw_walls(t_game *game, t_ray *ray, int x);
 
 #endif //GRAPHIC_H

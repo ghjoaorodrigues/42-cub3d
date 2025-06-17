@@ -16,17 +16,26 @@
 #include "jal_gnl.h"
 #include "jal_memory.h"
 #include "jal_string.h"
+#include "mlx.h"
 #include "read_int.h"
 
-int	ft_get_texture(char *line, char *txt_name, char **text_ptr)
+int	ft_get_texture(char *line, char *txt_name, void **img_ptr, void *mlx)
 {
+	char	*path;
+	int		size;
+
 	if (!ft_strncmp(line, txt_name, 3))
 	{
-		if (*text_ptr)
+		if (*img_ptr)
 			return (ft_error("A texture is given more than once", E_DUP_INFO));
-		*text_ptr = ft_strtrim(line + 3, " \n");
-		if (!*text_ptr)
+		path = ft_strtrim(line + 3, " \n");
+		if (!path)
 			return (ft_error("Memory allocation failed", E_NOMEM));
+		size = TEXTURE_SIZE;
+		*img_ptr = mlx_xpm_file_to_image(mlx, path, &size, &size);
+		free(path);
+		if (!*img_ptr)
+			return (ft_error("Mlx failed to get texture", E_MLX_XPM));
 	}
 	return (0);
 }
@@ -74,40 +83,42 @@ int	ft_get_colour(char *line, char *txt_name, int *colour)
 	return (0);
 }
 
-int	ft_info_full(const t_texture *info)
+int	ft_info_full(const t_map *map)
 {
-	return (info->NO && info->SO && info->EA && info->WE && info->F != -1
-		&& info->C != -1);
+	return (map->n_texture && map->e_texture && map->s_texture && map->w_texture && map->f_colour != -1
+		&& map->c_colour != -1);
 }
 
-int	ft_process_info(char *line, t_texture *texture) {
+int	ft_process_info(char *line, t_game *game) {
 	if (!ft_strncmp(line, "NO ", 3))
-		return (ft_get_texture(line, "NO ", &texture->NO));
-	if (!ft_strncmp(line, "SO ", 3))
-		return (ft_get_texture(line, "SO ", &texture->SO));
+		return (ft_get_texture(line, "NO ", &game->map.n_texture, game->mlx));
 	if (!ft_strncmp(line, "EA ", 3))
-		return (ft_get_texture(line, "EA ", &texture->EA));
+		return (ft_get_texture(line, "EA ", &game->map.e_texture, game->mlx));
+	if (!ft_strncmp(line, "SO ", 3))
+		return (ft_get_texture(line, "SO ", &game->map.s_texture, game->mlx));
 	if (!ft_strncmp(line, "WE ", 3))
-		return (ft_get_texture(line, "WE ", &texture->WE));
+		return (ft_get_texture(line, "WE ", &game->map.w_texture, game->mlx));
 	if (!ft_strncmp(line, "F ", 2))
-		return (ft_get_colour(line, "F ", &texture->F));
+		return (ft_get_colour(line, "F ", &game->map.f_colour));
 	if (!ft_strncmp(line, "C ", 2))
-		return (ft_get_colour(line, "C ", &texture->C));
+		return (ft_get_colour(line, "C ", &game->map.c_colour));
 	if (!ft_isempty(line))
 		return (ft_error("Invalid line on map file",
 				E_INVALID_LINE));
 	return (0);
 }
 
-int	ft_texture(char **line, int *read_count, int fd, t_texture *texture)
+int	ft_texture(char **line, int *read_count, int fd, t_game *game)
 {
-	while (*line && !ft_info_full(texture))
+	while (*line && !ft_info_full(&game->map))
 	{
-		if (ft_process_info(*line, texture) != 0)
-			return (ft_free_texture(texture), 1);
+		if (ft_process_info(*line, game) != 0)
+			return (*ft_exit_code());
 		free(*line);
 		*line = get_next_line(fd);
 		*read_count += 1;
 	}
+	if (!ft_info_full(&game->map))
+		return (ft_error("Missing map data", E_MISS_DATA));
 	return (0);
 }

@@ -14,7 +14,7 @@
 #include "jal_error.h"
 #include "jal_string.h"
 
-static void	ft_get_dimensions(t_imap *map)
+static void	ft_get_dimensions(t_map *map)
 {
 	int	height;
 	int	width;
@@ -52,7 +52,7 @@ static int	ft_complete_line(char **line, int width)
 	return (0);
 }
 
-int	ft_format_map(t_imap *map)
+int	ft_format_map(t_map *map)
 {
 	int	i;
 

@@ -6,38 +6,41 @@
 /*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 15:50:38 by fsilva-p          #+#    #+#             */
-/*   Updated: 2025/06/10 11:58:12 by fsilva-p         ###   ########.fr       */
+/*   Updated: 2025/06/16 19:24:29 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
-#include "input.h"
 #include "error.h"
-#include "test.h"
+#include "game.h"
 #include "graphic.h"
+#include "input.h"
+#include "jal_error.h"
+#include "../../include/keyhook.h"
+#include "mlx.h"
+#include "test.h"
 
 int	main(int argc, char **argv)
 {
-	t_input	input;
 	t_game	game;
+
 	if (argc != 2)
 		return (ft_error("Usage: ./cub3D <map_path>", E_ARGS));
 
-	if (ft_input(argv[1], &input) != 0)
+	if (ft_init(&game) != 0)
 		return (*ft_exit_code());
-	//test_print_input(&input);
 
-	ft_init_game(&game, &input);
-	ft_free_input(&input);
+	if (ft_input(argv[1], &game) != 0)
+		return (ft_free_game(&game), *ft_exit_code());
+	//test_print_game(&game);
 
-	test_print_game(&game);
+	game.win.height = WIN_HEIGHT;
+	game.win.width = WIN_HEIGHT * WIN_RATIO;
+	game.win.win = mlx_new_window(game.mlx, game.win.width, game.win.height, "CS da Wish");
 
-	ft_graphic(&game);
-	ft_raycastmain(&game);
-	mlx_loop(game.mlx.mlx);
-	
+	ft_draw(&game);
+	handle_input(&game);
+	mlx_loop(game.mlx);
 
 	ft_free_game(&game);
-
 	return (0);
 }

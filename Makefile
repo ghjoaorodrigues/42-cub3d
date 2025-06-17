@@ -19,9 +19,9 @@ col2pad			= 27
 # Mandatory Files
 INC				= -I include
 SRC_MAIN		= src/main/main.c \
-				  src/main/util.c
+				  src/main/init.c \
+				  src/main/free.c
 SRC_INPUT		= src/input/input.c \
-				  src/input/util.c \
 				  src/input/filename.c \
 				  src/input/read/read.c \
 				  src/input/read/texture.c \
@@ -29,13 +29,14 @@ SRC_INPUT		= src/input/input.c \
 				  src/input/check_map.c \
 				  src/input/format_map.c \
 				  src/input/flood_fill.c
-SRC_GRAPHIC		= src/graphic/graphic.c
-SRC_TEST		= src/test/test_input.c \
-				  src/test/test_game.c \
-				  src/raycast/raycast.c \
-				  src/raycast/keyhook.c\
-				  src/raycast/textures.c
-SRC				= $(SRC_MAIN) $(SRC_INPUT) $(SRC_GRAPHIC) $(SRC_TEST)
+SRC_GRAPHIC		= src/graphic/raycast.c \
+				  src/graphic/raycast_utils.c \
+				  src/graphic/draw.c
+SRC_KEYHOOK		= src/keyhook/keyhook.c \
+				  src/keyhook/keyhook_rotate.c \
+				  src/keyhook/keyhook_walk.c
+SRC_TEST		= src/test/test_game.c
+SRC				= $(SRC_MAIN) $(SRC_INPUT) $(SRC_GRAPHIC) $(SRC_KEYHOOK) $(SRC_TEST)
 OBJ				= $(SRC:src/%.c=$(O_DIR)/$(notdir %.o))
 
 # JAL Settings

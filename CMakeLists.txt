@@ -92,16 +92,23 @@ add_executable(cub3D
         src/input/check_map.c
         src/input/flood_fill.c
         src/input/input.c
-        src/input/util.c
         src/main/main.c
-        include/cube3d.h
         include/test.h
         include/error.h
         include/input.h
         Makefile
-        src/main/util.c
         src/test/test_game.c
         include/graphic.h
-        src/main/graphic/graphic.c
+        src/old_graphic/draw.c
+        include/vector.h
+        include/game.h
+        src/main/init.c
+        src/main/free.c
+        include/keyhook.h
+        src/old_graphic/init.c
+        src/old_graphic/shape.c
+        src/graphic/draw.c
+        src/graphic/raycast.c
+        src/graphic/raycast_utils.c
 )
 

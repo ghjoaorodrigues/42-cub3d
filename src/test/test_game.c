@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   test_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joao-alm <joao-alm@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 18:52:34 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/06/07 18:52:34 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:55:23 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "test.h"
+#include <stdio.h>
 
-void	test_print_game(t_game *game) {
+void	test_print_game(t_game *game)
+{
 	printf("TEST GAME\n");
 	printf("N ptr: %p\n", game->map.n_texture);
 	printf("E ptr: %p\n", game->map.e_texture);
@@ -24,7 +25,9 @@ void	test_print_game(t_game *game) {
 	printf("map[%d][%d]:\n", game->map.height, game->map.width);
 	for (int i = 0; i < game->map.height; i++)
 		printf("|%s|\n", game->map.matrix[i]);
-	printf("player vector: %.2f, %.2f\n", game->player.pos.y, game->player.pos.x);
+	printf("player vector: %.2f, %.2f\n", game->player.pos.y,
+		game->player.pos.x);
 	printf("dir vector: %.2f, %.2f\n", game->player.dir.y, game->player.dir.x);
-	printf("plane vector: %.2f, %.2f\n", game->player.plane.y, game->player.plane.x);
+	printf("plane vector: %.2f, %.2f\n", game->player.plane.y,
+		game->player.plane.x);
 }

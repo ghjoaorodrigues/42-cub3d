@@ -12,8 +12,10 @@
 
 #include "jal_gnl.h"
 
-void	ft_gnl_free_buffer(char *line, const int fd) {
-	while (line) {
+void	ft_gnl_free_buffer(char *line, const int fd)
+{
+	while (line)
+	{
 		free(line);
 		line = get_next_line(fd);
 	}

@@ -64,11 +64,28 @@ int	ft_count_map_lines(const char *path, int read_count)
 	return (count);
 }
 
+int	ft_fill_map(int fd, char **line, char ***map)
+{
+	int		i;
+
+	i = 0;
+	while (*line && !ft_isempty(*line))
+	{
+		(*map)[i] = ft_strtrim(*line, "\n");
+		free(*line);
+		if (!(*map)[i++])
+			return (ft_free_partial_matrix((void **)*map, i - 1),
+				ft_error("Memory allocation failed", E_NOMEM));
+		*line = get_next_line(fd);
+	}
+	(*map)[i] = NULL;
+	return (0);
+}
+
 int	ft_map(const char *path, int read_count, char ***map)
 {
 	int		fd;
 	char	*line;
-	int		i;
 
 	*map = malloc((ft_count_map_lines(path, read_count) + 1) * sizeof(char *));
 	if (!*map)
@@ -79,18 +96,8 @@ int	ft_map(const char *path, int read_count, char ***map)
 	line = get_next_line(fd);
 	read_count--;
 	ft_skip_info(&line, fd, read_count);
-	i = 0;
-	while (line && !ft_isempty(line))
-	{
-		(*map)[i] = ft_strtrim(line, "\n");
-		free(line);
-		if (!(*map)[i++])
-			return (ft_free_partial_matrix((void **)*map, i - 1),
-				ft_gnl_free_buffer(line, fd), close(fd),
-				ft_error("Memory allocation failed", E_NOMEM));
-		line = get_next_line(fd);
-	}
-	(*map)[i] = NULL;
+	if (ft_fill_map(fd, &line, map) != 0)
+		return (ft_gnl_free_buffer(line, fd), close(fd), *ft_exit_code());
 	if (!ft_rest_is_empty(&line, fd))
 		return (ft_free_matrix((void **)*map), ft_gnl_free_buffer(line, fd),
 			close(fd), ft_error("None empty lines found after map",

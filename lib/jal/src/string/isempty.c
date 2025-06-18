@@ -16,7 +16,8 @@ int	ft_isempty(char *str)
 {
 	if (!str)
 		return (0);
-	while (*str) {
+	while (*str)
+	{
 		if (!(*str == ' ' || (*str >= 9 && *str <= 13)))
 			return (0);
 		str++;

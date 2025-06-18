@@ -36,5 +36,6 @@ int	ft_init(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (ft_error("Mlx failed to initialize", E_MLX_INIT));
+	game->win.win = NULL;
 	return (0);
 }

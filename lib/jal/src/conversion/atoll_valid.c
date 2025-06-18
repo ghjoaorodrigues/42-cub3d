@@ -34,7 +34,8 @@ static void	ft_skip_prefix(const char **str, int *sign)
 	}
 }
 
-static int ft_rest_is_empty(const char *str) {
+static int	ft_rest_is_empty(const char *str)
+{
 	while (*str)
 		if (*str++ != ' ')
 			return (0);

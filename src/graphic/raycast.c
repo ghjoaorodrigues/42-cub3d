@@ -110,7 +110,7 @@ void	draw_clf(t_game *game)
 		x = -1;
 		while (++x < game->win.width)
 			((unsigned int *)game->ray.addr)[y * (game->ray.line_len / 4)
-				+ x] = 0x87CEEB;
+				+ x] = game->map.c_colour;
 		y++;
 	}
 	while (y < game->win.height)
@@ -118,7 +118,7 @@ void	draw_clf(t_game *game)
 		x = -1;
 		while (++x < game->win.width)
 			((unsigned int *)game->ray.addr)[y * (game->ray.line_len / 4)
-				+ x] = 0xA38C68;
+				+ x] = game->map.f_colour;
 		y++;
 	}
 }

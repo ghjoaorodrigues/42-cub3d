@@ -21,7 +21,6 @@
 
 #define ROT_SPEED 0.025
 #define MOVE_SPEED 0.06
-#define MOUSE_SENSITIVITY 0.0003
 
 #include "vector.h"
 
@@ -54,8 +53,6 @@ typedef struct s_win
 
 typedef struct	s_img
 {
-	// int			height;
-	// int			width;
 	void		*img;
 	char		*addr;
 	int			tile_size;

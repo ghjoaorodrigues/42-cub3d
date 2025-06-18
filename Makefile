@@ -36,8 +36,7 @@ SRC_GRAPHIC		= src/graphic/raycast.c \
 SRC_KEYHOOK		= src/keyhook/keyhook.c \
 				  src/keyhook/keyhook_rotate.c \
 				  src/keyhook/keyhook_walk.c
-SRC_TEST		= src/test/test_game.c
-SRC				= $(SRC_MAIN) $(SRC_INPUT) $(SRC_GRAPHIC) $(SRC_KEYHOOK) $(SRC_TEST)
+SRC				= $(SRC_MAIN) $(SRC_INPUT) $(SRC_GRAPHIC) $(SRC_KEYHOOK)
 OBJ				= $(SRC:src/%.c=$(O_DIR)/$(notdir %.o))
 
 # JAL Settings

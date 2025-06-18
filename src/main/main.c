@@ -17,7 +17,6 @@
 #include "input.h"
 #include "jal_error.h"
 #include "mlx.h"
-#include "test.h"
 
 int	main(int argc, char **argv)
 {
@@ -32,7 +31,7 @@ int	main(int argc, char **argv)
 	game.win.height = WIN_HEIGHT;
 	game.win.width = WIN_HEIGHT * WIN_RATIO;
 	game.win.win = mlx_new_window(game.mlx, game.win.width, game.win.height,
-			"CS da Wish");
+			"cub3D");
 	ft_draw(&game);
 	handle_input(&game);
 	mlx_loop(game.mlx);

@@ -26,6 +26,7 @@ SRC_INPUT		= src/input/input.c \
 				  src/input/read/read.c \
 				  src/input/read/texture.c \
 				  src/input/read/map.c \
+				  src/input/read/color_helper.c\
 				  src/input/check_map.c \
 				  src/input/format_map.c \
 				  src/input/flood_fill.c

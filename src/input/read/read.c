@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joao-alm <joao-alm@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 18:46:05 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/06/05 18:46:05 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:48:53 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <fcntl.h>
-#include <unistd.h>
 
 #include "jal_error.h"
 #include "jal_gnl.h"
 #include "jal_string.h"
 #include "read_int.h"
+#include <fcntl.h>
+#include <unistd.h>
 
-static void	ft_skip_empty_lines(char **line, int *read_count, const int fd) {
+static void	ft_skip_empty_lines(char **line, int *read_count, const int fd)
+{
 	while (line && ft_isempty(*line))
 	{
 		free(*line);
@@ -27,7 +27,8 @@ static void	ft_skip_empty_lines(char **line, int *read_count, const int fd) {
 	}
 }
 
-int		ft_read(const char *path, t_game *game) {
+int	ft_read(const char *path, t_game *game)
+{
 	char	*line;
 	int		read_count;
 	int		fd;

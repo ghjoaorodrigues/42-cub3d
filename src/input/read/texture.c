@@ -6,7 +6,7 @@
 /*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 18:51:17 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/06/12 14:08:07 by fsilva-p         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:47:36 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,6 @@ int	ft_get_texture(char *line, char *txt_name, void **img_ptr, void *mlx)
 	return (0);
 }
 
-int	ft_colour_helper(char **split, int *colour)
-{
-	int	col[3];
-	int	valid;
-
-	valid = 1;
-	col[0] = ft_atoll_valid(split[0], 0, 255, &valid);
-	col[1] = ft_atoll_valid(split[1], 0, 255, &valid);
-	col[2] = ft_atoll_valid(split[2], 0, 255, &valid);
-	if (!valid)
-		return (1);
-	*colour = (col[0] << 16) | (col[1] << 8) | col[2];
-	return (0);
-}
-
 int	ft_get_colour(char *line, char *txt_name, int *colour)
 {
 	char	**split;
@@ -85,11 +70,12 @@ int	ft_get_colour(char *line, char *txt_name, int *colour)
 
 int	ft_info_full(const t_map *map)
 {
-	return (map->n_texture && map->e_texture && map->s_texture && map->w_texture && map->f_colour != -1
-		&& map->c_colour != -1);
+	return (map->n_texture && map->e_texture && map->s_texture && map->w_texture
+		&& map->f_colour != -1 && map->c_colour != -1);
 }
 
-int	ft_process_info(char *line, t_game *game) {
+int	ft_process_info(char *line, t_game *game)
+{
 	if (!ft_strncmp(line, "NO ", 3))
 		return (ft_get_texture(line, "NO ", &game->map.n_texture, game->mlx));
 	if (!ft_strncmp(line, "EA ", 3))
@@ -103,8 +89,7 @@ int	ft_process_info(char *line, t_game *game) {
 	if (!ft_strncmp(line, "C ", 2))
 		return (ft_get_colour(line, "C ", &game->map.c_colour));
 	if (!ft_isempty(line))
-		return (ft_error("Invalid line on map file",
-				E_INVALID_LINE));
+		return (ft_error("Invalid line on map file", E_INVALID_LINE));
 	return (0);
 }
 

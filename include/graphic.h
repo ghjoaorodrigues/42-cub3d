@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphic.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joao-alm <joao-alm@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/07 20:02:29 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/06/16 20:23:49 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:32:43 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_ray {
 	int			draw_end;
 	double		wall_x;
 	t_point		tex;
+	double		max_distance;
 }				t_ray;
 
 // Draw

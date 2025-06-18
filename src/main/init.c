@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joao-alm <joao-alm@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:25:18 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/06/10 15:25:18 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:51:43 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stddef.h>
 
 #include "error.h"
 #include "game.h"
 #include "jal_error.h"
 #include "mlx.h"
+#include <stddef.h>
 
-int	ft_init(t_game *game) {
+int	ft_init(t_game *game)
+{
 	game->map.matrix = NULL;
 	game->map.height = -1;
 	game->map.width = -1;

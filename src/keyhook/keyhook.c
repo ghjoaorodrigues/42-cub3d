@@ -6,16 +6,14 @@
 /*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 15:50:38 by fsilva-p          #+#    #+#             */
-/*   Updated: 2025/06/16 19:34:48 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:18:19 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "keyhook.h"
-
-#include <stdlib.h>
-
 #include "graphic.h"
+#include "keyhook.h"
 #include "mlx.h"
+#include <stdlib.h>
 
 int	exit_game(t_game *game)
 {

@@ -6,24 +6,24 @@
 /*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 17:21:17 by fsilva-p          #+#    #+#             */
-/*   Updated: 2025/06/12 14:58:13 by fsilva-p         ###   ########.fr       */
+/*   Updated: 2025/06/18 14:44:47 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-
 #include "graphic.h"
 #include "mlx.h"
+#include <math.h>
 
 void	calc_perp_dist(t_ray *ray)
 {
 	if (ray->horizontal_side == 0)
-		ray->perp_wall_dist = (ray->map.x - ray->player.x + (1 - ray->step.x) / 2)
-			/ ray->ray_dir.x;
+		ray->perp_wall_dist = (ray->map.x - ray->player.x + (1 - ray->step.x)
+				/ 2) / ray->ray_dir.x;
 	else
-		ray->perp_wall_dist = (ray->map.y - ray->player.y + (1 - ray->step.y) / 2)
-			/ ray->ray_dir.y;
+		ray->perp_wall_dist = (ray->map.y - ray->player.y + (1 - ray->step.y)
+				/ 2) / ray->ray_dir.y;
 }
+
 void	calc_distance(t_ray *ray)
 {
 	if (ray->side_dist.x < ray->side_dist.y)
@@ -56,7 +56,8 @@ void	get_texture_addr(t_game *game, t_ray *ray, t_img *tex_img)
 		else
 			tex_img->img = game->map.s_texture;
 	}
-	tex_img->addr = mlx_get_data_addr(tex_img->img, &tex_img->bpp, &tex_img->line_len, &tex_img->endian);
+	tex_img->addr = mlx_get_data_addr(tex_img->img, &tex_img->bpp,
+			&tex_img->line_len, &tex_img->endian);
 }
 
 void	draw_utils(t_game *game, t_ray *ray)
@@ -78,6 +79,7 @@ void	draw_utils(t_game *game, t_ray *ray)
 		|| (ray->horizontal_side == 1 && ray->ray_dir.y < 0))
 		ray->tex.x = TEXTURE_SIZE - ray->tex.x - 1;
 }
+
 void	draw_walls(t_game *game, t_ray *ray, int x)
 {
 	int				y;
@@ -92,8 +94,10 @@ void	draw_walls(t_game *game, t_ray *ray, int x)
 	{
 		d = y * 256 - game->win.height * 128 + ray->line_height * 128;
 		ray->tex.y = (d * TEXTURE_SIZE) / ray->line_height / 256;
-		color = ((unsigned int *)tex_img.addr)[ray->tex.y * (tex_img.line_len / 4) + ray->tex.x];
-		((unsigned int *)game->ray.addr)[y * (game->ray.line_len / 4) + x] = color;
+		color = ((unsigned int *)tex_img.addr)[ray->tex.y * (tex_img.line_len
+				/ 4) + ray->tex.x];
+		((unsigned int *)game->ray.addr)[y * (game->ray.line_len / 4)
+			+ x] = color;
 		y++;
 	}
 }

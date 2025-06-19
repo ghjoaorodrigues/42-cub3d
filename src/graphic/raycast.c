@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+
 #include "graphic.h"
 #include <tgmath.h>
 
@@ -56,46 +58,32 @@ void	init_ray(t_game *game, t_ray *ray, int x)
 		ray->delta.y = 1e30;
 	else
 		ray->delta.y = fabs(1 / ray->ray_dir.y);
-	ray->max_distance = 100.0;
-}
-
-void	ft_draw_line(t_game *game, int x)
-{
-	t_ray	ray;
-	double	current_distance;
-
-	init_ray(game, &ray, x);
-	calc_raydir(&ray);
-	current_distance = 0.0;
-	while (ray.hit == 0 && current_distance < ray.max_distance)
-	{
-		calc_distance(&ray);
-		current_distance += 1.0;
-		if (ray.map.y >= 0 && ray.map.y < game->map.height && ray.map.x >= 0
-			&& ray.map.x < game->map.width)
-		{
-			if (game->map.matrix[ray.map.y][ray.map.x] == '1')
-				ray.hit = 1;
-		}
-		else if (current_distance > 50.0)
-			break ;
-	}
-	if (ray.hit == 1)
-	{
-		calc_perp_dist(&ray);
-		draw_walls(game, &ray, x);
-	}
 }
 
 void	raycasting(t_game *game)
 {
 	int		x;
+	t_ray	ray;
 
-	x = 0;
-	while (x < game->win.width)
+	x = -1;
+	while (++x < game->win.width)
 	{
-		ft_draw_line(game, x);
-		x++;
+		init_ray(game, &ray, x);
+		calc_raydir(&ray);
+		while (ray.hit == 0)
+		{
+			calc_distance(&ray);
+			if (ray.map.y < 0 || ray.map.y >= game->map.height
+				|| ray.map.x < 0 || ray.map.x >= game->map.width)
+				break ;
+			if (game->map.matrix[ray.map.y][ray.map.x] == '1')
+				ray.hit = 1;
+		}
+		if (ray.hit == 1)
+		{
+			calc_perp_dist(&ray);
+			draw_walls(game, &ray, x);
+		}
 	}
 }
 

@@ -31,7 +31,6 @@ typedef struct	s_ray {
 	int			draw_end;
 	double		wall_x;
 	t_point		tex;
-	double		max_distance;
 }				t_ray;
 
 // Draw

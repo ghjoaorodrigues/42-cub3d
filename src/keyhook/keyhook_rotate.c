@@ -12,6 +12,7 @@
 
 #include "keyhook.h"
 #include <math.h>
+#include "graphic.h"
 
 void	rotate_view(t_game *game, double angle)
 {

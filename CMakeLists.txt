@@ -96,7 +96,6 @@ add_executable(cub3D
         include/error.h
         include/input.h
         Makefile
-        src/test/test_game.c
         include/graphic.h
         include/vector.h
         include/game.h
@@ -106,5 +105,6 @@ add_executable(cub3D
         src/graphic/draw.c
         src/graphic/raycast.c
         src/graphic/raycast_utils.c
+        bonus/keyhook_walk_bonus.c
 )
 

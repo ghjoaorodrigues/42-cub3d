@@ -10,31 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-#include "graphic.h"
 #include "keyhook.h"
 
 static void	move_player(t_game *game, double dx, double dy)
 {
-	double	new_y;
-	double	new_x;
-	double	margin;
+	t_vector	new;
+	t_vector	try;
+	double		margin;
 
-	new_y = game->player.pos.y;
-	new_x = game->player.pos.x;
+	new.y = game->player.pos.y;
+	new.x = game->player.pos.x;
 	margin = 0.2;
 	if (dx != 0)
-		new_x += dx * MOVE_SPEED;
-	if (dy != 0)
-		new_y += dy * MOVE_SPEED;
-	if ((int)(new_y - margin) >= 0
-		&& (int)(new_y + margin) < game->map.height
-		&& (int)(new_x - margin) >= 0
-		&& (int)(new_x + margin) < game->map.width)
 	{
-		game->player.pos.y = new_y;
-		game->player.pos.x = new_x;
+		try.x = new.x + dx * MOVE_SPEED;
+		if (game->map.matrix[(int)new.y][(int)(try.x + margin)] != '1'
+			&& game->map.matrix[(int)new.y][(int)(try.x - margin)] != '1')
+			game->player.pos.x = try.x;
+	}
+	if (dy != 0)
+	{
+		try.y = new.y + dy * MOVE_SPEED;
+		if (game->map.matrix[(int)(try.y + margin)][(int)(new.x)] != '1'
+			&& game->map.matrix[(int)(try.y - margin)][(int)(new.x)] != '1')
+			game->player.pos.y = try.y;
 	}
 }
 

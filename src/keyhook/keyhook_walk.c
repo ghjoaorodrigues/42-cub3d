@@ -6,7 +6,7 @@
 /*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 13:53:30 by fsilva-p          #+#    #+#             */
-/*   Updated: 2025/06/18 14:09:21 by fsilva-p         ###   ########.fr       */
+/*   Updated: 2025/06/19 15:09:50 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	move_player(t_game *game, double dx, double dy)
 
 	new_y = game->player.pos.y;
 	new_x = game->player.pos.x;
-	margin = 0.2;
+	margin = 0.3;
 	if (dx != 0)
 		new_x += dx * MOVE_SPEED;
 	if (dy != 0)

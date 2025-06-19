@@ -3,26 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joao-alm <joao-alm@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 15:18:28 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/06/16 20:34:20 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/06/19 15:55:26 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
-#define GAME_H
+# define GAME_H
 
-#define FOV 0.9
-#define TEXTURE_SIZE 512
+# define FOV 0.9
+# define TEXTURE_SIZE 512
 
-#define	WIN_HEIGHT 720
-#define	WIN_RATIO 16/9
+# define WIN_HEIGHT 720
+# define WIN_RATIO 1.777777778
 
-#define ROT_SPEED 0.025
-#define MOVE_SPEED 0.06
+# define ROT_SPEED 0.025
+# define MOVE_SPEED 0.06
+# define COLISSION 0.3
 
-#include "vector.h"
+# include "vector.h"
 
 typedef struct s_map
 {
@@ -37,7 +38,7 @@ typedef struct s_map
 	int			c_colour;
 }				t_map;
 
-typedef struct	s_player
+typedef struct s_player
 {
 	t_vector	pos;
 	t_vector	dir;
@@ -51,7 +52,7 @@ typedef struct s_win
 	int			width;
 }				t_win;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void		*img;
 	char		*addr;
@@ -61,16 +62,17 @@ typedef struct	s_img
 	int			endian;
 }				t_img;
 
-typedef struct	s_keys {
-	int 		w;
-	int 		a;
-	int 		s;
-	int 		d;
-	int 		left;
-	int 		right;
+typedef struct s_keys
+{
+	int			w;
+	int			a;
+	int			s;
+	int			d;
+	int			left;
+	int			right;
 }				t_keys;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	t_map		map;
 	t_player	player;
@@ -85,4 +87,4 @@ int				ft_init(t_game *game);
 // Free
 void			ft_free_game(const t_game *game);
 
-#endif //GAME_H
+#endif // GAME_H

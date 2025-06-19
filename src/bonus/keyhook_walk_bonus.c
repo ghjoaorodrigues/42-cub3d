@@ -1,62 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyhook_walk.c                                     :+:      :+:    :+:   */
+/*   keyhook_walk_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsilva-p <fsilva-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 13:53:30 by fsilva-p          #+#    #+#             */
-/*   Updated: 2025/06/18 14:09:21 by fsilva-p         ###   ########.fr       */
+/*   Updated: 2025/06/19 15:52:35 by fsilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "keyhook.h"
 
-static void	move_player(t_game *game, double dx, double dy)
+static void	move_player(t_game *g, double dx, double dy)
 {
-	t_vector	new;
-	t_vector	try;
-	double		margin;
+	int		new_x;
+	int		new_y;
+	double	margin;
 
-	new.y = game->player.pos.y;
-	new.x = game->player.pos.x;
-	margin = 0.2;
-	if (dx != 0)
-	{
-		try.x = new.x + dx * MOVE_SPEED;
-		if (game->map.matrix[(int)new.y][(int)(try.x + margin)] != '1'
-			&& game->map.matrix[(int)new.y][(int)(try.x - margin)] != '1')
-			game->player.pos.x = try.x;
-	}
-	if (dy != 0)
-	{
-		try.y = new.y + dy * MOVE_SPEED;
-		if (game->map.matrix[(int)(try.y + margin)][(int)(new.x)] != '1'
-			&& game->map.matrix[(int)(try.y - margin)][(int)(new.x)] != '1')
-			game->player.pos.y = try.y;
-	}
+	margin = COLISSION;
+	new_x = (int)(g->player.pos.x + dx + (dx > 0) * margin - (dx < 0) * margin);
+	new_y = (int)(g->player.pos.y);
+	if (new_x >= 0 && new_x < g->map.width && new_y >= 0
+		&& new_y < g->map.height && g->map.matrix[new_y][new_x] != '1')
+		g->player.pos.x += dx;
+	new_x = (int)(g->player.pos.x);
+	new_y = (int)(g->player.pos.y + dy + (dy > 0) * margin - (dy < 0) * margin);
+	if (new_x >= 0 && new_x < g->map.width && new_y >= 0
+		&& new_y < g->map.height && g->map.matrix[new_y][new_x] != '1')
+		g->player.pos.y += dy;
 }
 
-void	walk_w(int keycode, t_game *game)
+void	walk_w(int key, t_game *g)
 {
-	if (keycode == KEY_W)
-		move_player(game, game->player.dir.x, game->player.dir.y);
+	if (key == KEY_W)
+		move_player(g, g->player.dir.x * MOVE_SPEED, g->player.dir.y
+			* MOVE_SPEED);
 }
 
-void	walk_s(int keycode, t_game *game)
+void	walk_s(int key, t_game *g)
 {
-	if (keycode == KEY_S)
-		move_player(game, -game->player.dir.x, -game->player.dir.y);
+	if (key == KEY_S)
+		move_player(g, -g->player.dir.x * MOVE_SPEED, -g->player.dir.y
+			* MOVE_SPEED);
 }
 
-void	walk_a(int keycode, t_game *game)
+void	walk_a(int key, t_game *g)
 {
-	if (keycode == KEY_A)
-		move_player(game, -game->player.plane.x, -game->player.plane.y);
+	if (key == KEY_A)
+		move_player(g, -g->player.plane.x * MOVE_SPEED, -g->player.plane.y
+			* MOVE_SPEED);
 }
 
-void	walk_d(int keycode, t_game *game)
+void	walk_d(int key, t_game *g)
 {
-	if (keycode == KEY_D)
-		move_player(game, game->player.plane.x, game->player.plane.y);
+	if (key == KEY_D)
+		move_player(g, g->player.plane.x * MOVE_SPEED, g->player.plane.y
+			* MOVE_SPEED);
 }

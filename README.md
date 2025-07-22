@@ -5,10 +5,6 @@
 ![Status Badge](https://img.shields.io/badge/Status-Completed-success)
 ![Graphics Badge](https://img.shields.io/badge/Graphics-Ray--casting-orange)
 
-## Project Details
-
-For full project requirements, see the [Subject File](./subject.md).
-
 ## What I Learned
 
 Through this challenging graphics programming project at 42 School, I developed advanced programming skills and deep understanding of:
